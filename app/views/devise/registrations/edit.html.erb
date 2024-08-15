@@ -1,0 +1,64 @@
+<h2>Edit Profile<% resource_name.to_s.humanize %></h2>
+<br/>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+    class:"form-control", placeholder:"Email"  %>
+  </div>
+  <br/>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", 
+    class:"form-control", placeholder:"New Password (leave blank if you don't want to change it)"  %>
+  </div>
+  <br/>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" , 
+    class:"form-control", placeholder:"Confirm New Password"  %>
+  </div>
+  <br/>
+
+  <div class="field">
+    <% f.label :current_password %> <i>We need your current password to confirm your changes</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", 
+    class:"form-control", placeholder:"Current Password"  %>
+  </div>
+  <br/>
+
+  <div class="actions">
+    <%= f.submit "Update", class:"btn btn-secondary" %>
+  </div>
+  <br/>
+<% end %>
+
+<br/>
+
+<div class="card">
+  <div class="card-header">
+    <h4>Cancel my Account</h4>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Unhappy?</h5>
+    <p class="card-text">You can cancel your account easily, but this will delete all your data.</p>
+    <%= 
+      button_to "Cancel my account", registration_path(resource_name), 
+      data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, 
+      class:"btn btn-danger" , method: :delete 
+    %>
+  </div>
+</div>
+
+<br/>
+
+<%= link_to "Back", :back %>

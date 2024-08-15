@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null,
+    "css.format.preserveNewLines": false,
+    "html.format.indentHandlebars": true,
+    "editor.formatOnType": true,
+    "[erb]": {
+        "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+    },
+    "[ruby]": {
+        "editor.defaultFormatter": "mbessey.vscode-rufo"
+    }
+}

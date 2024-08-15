@@ -1,0 +1,38 @@
+<% if user_signed_in? %>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Twitter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friends.each do |friend| %>
+        <% if friend.user == current_user %>
+          <tr>
+            <td><%= link_to friend.first_name + ' ' + friend.last_name, friend%></td>
+            <td><%= friend.email %></td>
+            <td><%= friend.phone %></td>
+            <td><%= friend.twitter %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "New friend", new_friend_path, class:"btn btn-success" %>
+<% else %>
+  <h1>Welcome to Friends App!</h1>
+  <br/>
+  <p>This App implements the basic CRUD operations:
+    <br/>
+    - Create <br/>
+    - Read  <br/>
+    - Update  <br/>
+    - Delete <br/>
+    <br/>
+    <strong>You can store your friends' contacts and accounts !</strong><br/>
+    Sign in to view your friends list or Sign Up to create your list.
+  </p>
+<% end %>
